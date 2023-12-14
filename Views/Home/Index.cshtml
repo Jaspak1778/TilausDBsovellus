@@ -1,0 +1,27 @@
+﻿@using System.Globalization
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">Tilaus tietokannan web pohjainen hallinta ohjelma</h1>
+        <p class="lead">Toteutettu ASPNET sekä ADONET teknologiaa käyttäen </p>
+    </section>
+    <hr />
+    <div class="row"> </div>
+    <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+        <p>Pikalinkit</p>
+
+        <p class="btn btn-outline-dark"> @Html.ActionLink("Asiakkaat", "Index", "Asiakkaatdb", new { area = "" }, new { @class = "nav-link" })</p>
+        <p class="btn btn-outline-dark"> @Html.ActionLink("Tuotteet", "Index", "Tuotteetdb", new { area = "" }, new { @class = "nav-link" })</p>
+    </section>
+    <div class="row">
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <p style="font-family:'Franklin Gothic'">Tänään on  - @DateTime.Now.ToString("MM/dd/yyyy") - @DateTime.Now.ToString("MMMM") </p>
+
+
+        </section>
+
+    </div>
+</main>

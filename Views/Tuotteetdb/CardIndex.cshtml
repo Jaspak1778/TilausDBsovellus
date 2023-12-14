@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MVC_TKsovellus_1001.Models.Tuotteet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tuotteiden esittely näkymä</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-lg-3">
+            <div class="card mb-3">
+                <h3 class="card-header">@item.Nimi</h3>
+                <div class="card-body">
+                    <h5 class="card-title">@item.Ahinta</h5>
+                    <img style="height: 100px; width: 100px; display: block;" src="@item.Kuva" /> - <img />
+                </div>
+            </div>
+            
+        </div>
+
+    }
+</div>
+
+@{
+    ViewBag.Title = "CardIndex";
+}
+
+<h2>CardIndex</h2>
+
