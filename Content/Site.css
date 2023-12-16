@@ -19,4 +19,12 @@ textarea {
     max-width: 280px;
 }
 
-<link href="~/Content/css/Oma1.css" rel="stylesheet">
+/*green navbar*/
+.navbar-inverse {
+    background-color: #28a745 !important;
+}
+
+a.mynav {
+    background-color: #28a745 !important;
+}
+

@@ -23,7 +23,7 @@ namespace MVC_TKsovellus_1001
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrapstone.css",
                       "~/Content/site.css"));
         }
     }

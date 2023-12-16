@@ -1,3 +1,6 @@
-﻿navbar navbar-light {
-    background-color: rgb(228, 227, 253);
-}
+﻿h2 {font-family: comicsans !important;}
+
+nav {background: #3399ff !important;}
+
+
+li {color: darkviolet !important;}
