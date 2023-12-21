@@ -15,6 +15,7 @@ namespace MVC_TKsovellus_1001.Controllers
         {
             if (Session["UserName"] == null)
             {
+                
                 ViewBag.LoggedStatus = "Out";
                 
                 return View();
@@ -82,11 +83,15 @@ namespace MVC_TKsovellus_1001.Controllers
         public ActionResult LogOut()
         {
             Session.Abandon();
+            
             ViewBag.LoggedStatus = "Out";
             return RedirectToAction("Endsession", "Home"); //Uloskirjautumisen jälkeen pääsivulle
         }
         public ActionResult Endsession()
         {
+
+            Session.Abandon();
+            
             ViewBag.LoggedOut = "Olet kirjautunut ulos järjestelmästä.";
             return View(); //We have a special wiev LoggedOut which is a copy of Index, but has additional viewbag message of
                            //succesfull logout and possibility to login again.

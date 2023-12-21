@@ -135,6 +135,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\PostitoimipaikatdbController.cs" />
+    <Compile Include="Controllers\TilauksetdbController.cs" />
     <Compile Include="Controllers\TuotteetdbController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -296,6 +297,11 @@
     <Content Include="Views\Logins\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Endsession.cshtml" />
+    <Content Include="Views\Tilauksetdb\Create.cshtml" />
+    <Content Include="Views\Tilauksetdb\Delete.cshtml" />
+    <Content Include="Views\Tilauksetdb\Details.cshtml" />
+    <Content Include="Views\Tilauksetdb\Edit.cshtml" />
+    <Content Include="Views\Tilauksetdb\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

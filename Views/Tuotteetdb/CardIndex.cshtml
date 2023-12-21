@@ -5,7 +5,11 @@
 }
 
 <h2>Tuotteiden esittely näkymä</h2>
-
+<hr />
+<div>
+    <a class="btn btn-primary btm-sm" href="/Home/Index">Takaisin</a>
+</div>
+<hr />
 <div class="row">
     @foreach (var item in Model)
     {
@@ -22,14 +26,6 @@
         </div>
 
     }
-    <div>
-        <a class="btn btn-primary btm-sm" href="/Home/Index">Takaisin</a>
-    </div>
+
 </div>
-
-@{
-    ViewBag.Title = "CardIndex";
-}
-
-<h2>CardIndex</h2>
 

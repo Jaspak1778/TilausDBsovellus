@@ -5,7 +5,6 @@
 }
 
 <h2>Tuotteet</h2>
-
 <p>
     <a class="btn btn-primary btm-sm" href="/Tuotteetdb/Create">Lisää tuote</a>
 </p>
@@ -23,24 +22,25 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ahinta)
-        </td>
-        <td>
-            <img style="height: 100px; width: 100px; display: block;" src="@item.Kuva" /><img />
-        </td>
-        <td>
-            <a class="btn btn-primary btm-sm" href="/Tuotteetdb/Edit?id=@item.TuoteID">Muokkaa</a>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ahinta)
+            </td>
+            <td>
+                <img style="height: 100px; width: 100px; display: block;" src="@item.Kuva" /><img />
+            </td>
+            <td>
+                <a class="btn btn-primary btm-sm" href="/Tuotteetdb/Edit?id=@item.TuoteID">Muokkaa</a>
 
-            <a class="btn btn-light btm-sm" href="/Tuotteetdb/Details?id=@item.TuoteID">Lisätiedot</a>
-            <a class="btn btn-danger btm-sm" href="/Tuotteetdb/Delete?id=@item.TuoteID">Poista</a>
-        </td>
-    </tr>
-}
+                <a class="btn btn-light btm-sm" href="/Tuotteetdb/Details?id=@item.TuoteID">Lisätiedot</a>
+                <a class="btn btn-danger btm-sm" href="/Tuotteetdb/Delete?id=@item.TuoteID">Poista</a>
+            </td>
+        </tr>
+    }
 
 </table>
