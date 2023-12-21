@@ -17,8 +17,15 @@ namespace MVC_TKsovellus_1001.Controllers
         // GET: Asiakkaatdb
         public ActionResult Index()
         {
-            var asiakkaat = db.Asiakkaat.Include(a => a.Postitoimipaikat);
-            return View(asiakkaat.ToList());
+            if (Session["UserName"] == null)
+            {
+                return RedirectToAction("login", "home");
+            }
+            else
+            {
+                var asiakkaat = db.Asiakkaat.Include(a => a.Postitoimipaikat);
+                return View(asiakkaat.ToList());
+            }
         }
 
         // GET: Asiakkaatdb/Details/5

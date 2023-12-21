@@ -132,6 +132,8 @@
     <Compile Include="Controllers\AsiakkaatdbController.cs" />
     <Compile Include="Controllers\HenkilotdbController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\PostitoimipaikatdbController.cs" />
     <Compile Include="Controllers\TuotteetdbController.cs" />
     <Compile Include="Global.asax.cs">
@@ -141,6 +143,9 @@
       <DependentUpon>TilauksetDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Henkilot.cs">
+      <DependentUpon>TilauksetDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Logins.cs">
       <DependentUpon>TilauksetDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Postitoimipaikat.cs">
@@ -203,13 +208,6 @@
       <DependentUpon>TilauksetDB.edmx</DependentUpon>
       <LastGenOutput>TilauksetDB.cs</LastGenOutput>
     </Content>
-    <EntityDeploy Include="Models\TilauksetDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TilauksetDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TilauksetDB.edmx.diagram">
-      <DependentUpon>TilauksetDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -238,6 +236,13 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <EntityDeploy Include="Models\TilauksetDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TilauksetDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TilauksetDB.edmx.diagram">
+      <DependentUpon>TilauksetDB.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -284,6 +289,13 @@
     <Content Include="Views\Tuotteetdb\Edit.cshtml" />
     <Content Include="Views\Tuotteetdb\Index.cshtml" />
     <Content Include="Views\Tuotteetdb\CardIndex.cshtml" />
+    <Content Include="Views\Logins\Create.cshtml" />
+    <Content Include="Views\Logins\Delete.cshtml" />
+    <Content Include="Views\Logins\Details.cshtml" />
+    <Content Include="Views\Logins\Edit.cshtml" />
+    <Content Include="Views\Logins\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Endsession.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

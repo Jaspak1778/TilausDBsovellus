@@ -37,6 +37,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Muokkaa", "Edit", new { id = Model.TuoteID }) |
-    @Html.ActionLink("Takaisin", "Index")
+    <a class="btn btn-primary btm-sm" href="~/Tuotteetdb/Edit?id=@Model.TuoteID">Muokkaa</a>
+    <a class="btn btn-primary btm-sm" href="~/Tuotteetdb/Index">Takaisin</a>
 </p>

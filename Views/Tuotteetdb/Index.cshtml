@@ -7,18 +7,18 @@
 <h2>Tuotteet</h2>
 
 <p>
-    @Html.ActionLink("Lisää tuote", "Create")
+    <a class="btn btn-primary btm-sm" href="/Tuotteetdb/Create">Lisää tuote</a>
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nimi)
+            Nimi
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ahinta)
+            Ahinta
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kuva)
+            Kuva
         </th>
         <th></th>
     </tr>
@@ -35,9 +35,10 @@
             <img style="height: 100px; width: 100px; display: block;" src="@item.Kuva" /><img />
         </td>
         <td>
-            @Html.ActionLink("Muokkaa", "Edit", new { id=item.TuoteID }) |
-            @Html.ActionLink("Lisätiedot", "Details", new { id=item.TuoteID }) |
-            @Html.ActionLink("Poista", "Delete", new { id=item.TuoteID })
+            <a class="btn btn-primary btm-sm" href="/Tuotteetdb/Edit?id=@item.TuoteID">Muokkaa</a>
+
+            <a class="btn btn-light btm-sm" href="/Tuotteetdb/Details?id=@item.TuoteID">Lisätiedot</a>
+            <a class="btn btn-danger btm-sm" href="/Tuotteetdb/Delete?id=@item.TuoteID">Poista</a>
         </td>
     </tr>
 }
