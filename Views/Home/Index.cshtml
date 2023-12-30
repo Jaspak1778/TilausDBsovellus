@@ -2,39 +2,41 @@
 @{
     ViewBag.Title = "Kotisivu";
 }
-
-<main style="margin: 1px">
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">Tilaus tietokannan hallinta ohjelma</h1>
-    </section>
-    <hr />
-    <div class="row"> </div>
-    <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-        <h3>Pikalinkit</h3>
-
-        @if (Session["UserName"] == null)
-        {
-            <div class="table table-hover; row mb-1">
-                <a class="btn btn-primary" href="/Home/Login"> Kirjaudu </a>
-                <p></p>
-                <a class="btn btn-primary" href="/Tuotteetdb/CardIndex"> Esittelynäkymä </a>
-                <p></p>
-            </div>
-        }
-        else
-        {
-            <div class="table table-hover; row mb-1">
-                <a class="btn btn-primary" href="/Tuotteetdb/CardIndex"> Esittelynäkymä </a>
-                <p></p>
-                <a class="btn btn-primary" href="/Asiakkaatdb/Index"> Asiakkaat </a>
-                <p></p>
-                <a class="btn btn-primary" href="/Tuotteetdb/Index"> Tuotteet </a>
-                 <p></p>
-                <a class="btn btn-primary" href="/Asiakkaatdb/Create"> Lisää asiakas </a>
-                <p></p>
-                <a class="btn btn-primary" href="/Tuotteetdb/Create"> Lisää tuote </a>
-           </div>
-                }
-
+    <main style="margin: 1px">
+        <section class="row" aria-labelledby="aspnetTitle">
+            <h1 id="title">Tilaus tietokannan hallinta ohjelma</h1>
         </section>
-</main>
+        <hr />
+        <div class="row"> </div>
+        <div style="float:right">
+            <a href="https://careeria.fi/asiakastyot/ict-alan-tyot-huolto-neuvonta-ja-tuki/">
+                <img src="~/Images/Careera.png" alt="Careera.png" width="300" ; height="100">
+            </a>
+        </div>
+        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
+            <h3>Pikalinkit</h3>
+            @if (Session["UserName"] == null)
+            {
+                <div class="table table-hover; row mb-1">
+                    <a class="btn btn-primary" href="/Home/Login"> Kirjaudu </a>
+                    <p></p>
+                    <a class="btn btn-primary" href="/Tuotteetdb/CardIndex"> Esittelynäkymä </a>
+                    <p></p>
+                </div>
+            }
+            else
+            {
+                <div class="table table-hover; row mb-1">
+                    <a class="btn btn-primary" href="/Tuotteetdb/CardIndex"> Esittelynäkymä </a>
+                    <p></p>
+                    <a class="btn btn-primary" href="/Asiakkaatdb/Index"> Asiakkaat </a>
+                    <p></p>
+                    <a class="btn btn-primary" href="/Tuotteetdb/Index"> Tuotteet </a>
+                    <p></p>
+                    <a class="btn btn-primary" href="/Asiakkaatdb/Create"> Lisää asiakas </a>
+                    <p></p>
+                    <a class="btn btn-primary" href="/Tuotteetdb/Create"> Lisää tuote </a>
+                </div>
+            }
+        </section>
+    </main>

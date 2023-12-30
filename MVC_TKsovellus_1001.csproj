@@ -130,12 +130,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AsiakkaatdbController.cs" />
-    <Compile Include="Controllers\HenkilotdbController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LoginsController.cs" />
     <Compile Include="Controllers\PostitoimipaikatdbController.cs" />
     <Compile Include="Controllers\TilauksetdbController.cs" />
+    <Compile Include="Controllers\TilausrivitdbController.cs" />
     <Compile Include="Controllers\TuotteetdbController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -269,16 +269,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Asiakkaatdb\Create.cshtml" />
-    <Content Include="Views\Asiakkaatdb\Delete.cshtml" />
-    <Content Include="Views\Asiakkaatdb\Details.cshtml" />
-    <Content Include="Views\Asiakkaatdb\Edit.cshtml" />
-    <Content Include="Views\Asiakkaatdb\Index.cshtml" />
-    <Content Include="Views\Henkilotdb\Create.cshtml" />
-    <Content Include="Views\Henkilotdb\Delete.cshtml" />
-    <Content Include="Views\Henkilotdb\Details.cshtml" />
-    <Content Include="Views\Henkilotdb\Edit.cshtml" />
-    <Content Include="Views\Henkilotdb\Index.cshtml" />
     <Content Include="Views\Postitoimipaikatdb\Create.cshtml" />
     <Content Include="Views\Postitoimipaikatdb\Delete.cshtml" />
     <Content Include="Views\Postitoimipaikatdb\Details.cshtml" />
@@ -302,9 +292,21 @@
     <Content Include="Views\Tilauksetdb\Details.cshtml" />
     <Content Include="Views\Tilauksetdb\Edit.cshtml" />
     <Content Include="Views\Tilauksetdb\Index.cshtml" />
+    <Content Include="Views\Tilausrivitdb\Create.cshtml" />
+    <Content Include="Views\Tilausrivitdb\Delete.cshtml" />
+    <Content Include="Views\Tilausrivitdb\Details.cshtml" />
+    <Content Include="Views\Tilausrivitdb\Edit.cshtml" />
+    <Content Include="Views\Tilausrivitdb\Index.cshtml" />
+    <Content Include="Views\Asiakkaatdb\Create.cshtml" />
+    <Content Include="Views\Asiakkaatdb\Delete.cshtml" />
+    <Content Include="Views\Asiakkaatdb\Details.cshtml" />
+    <Content Include="Views\Asiakkaatdb\Edit.cshtml" />
+    <Content Include="Views\Asiakkaatdb\Index.cshtml" />
+    <Content Include="Views\Postitoimipaikatdb\CreateA.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

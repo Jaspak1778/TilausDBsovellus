@@ -10,107 +10,116 @@ using MVC_TKsovellus_1001.Models;
 
 namespace MVC_TKsovellus_1001.Controllers
 {
-    public class HenkilotdbController : Controller
+    public class TilausrivitdbController : Controller
     {
         private TilauksetEntities db = new TilauksetEntities();
 
-        // GET: Henkilotdb
+        // GET: Tilausrivitdb
         public ActionResult Index()
         {
-            return View(db.Henkilot.ToList());
+            var tilausrivit = db.Tilausrivit.Include(t => t.Tilaukset).Include(t => t.Tuotteet);
+            return View(tilausrivit.ToList());
         }
 
-        // GET: Henkilotdb/Details/5
+        // GET: Tilausrivitdb/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Tilausrivit tilausrivit = db.Tilausrivit.Find(id);
+            if (tilausrivit == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(tilausrivit);
         }
 
-        // GET: Henkilotdb/Create
+        // GET: Tilausrivitdb/Create
         public ActionResult Create()
         {
+            ViewBag.TilausID = new SelectList(db.Tilaukset, "TilausID", "Toimitusosoite");
+            ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi");
             return View();
         }
 
-        // POST: Henkilotdb/Create
+        // POST: Tilausrivitdb/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Henkilo_id,Etunimi,Sukunimi,Osoite,Esimies,Postinumero,Sahkoposti")] Henkilot henkilot)
+        public ActionResult Create([Bind(Include = "TilausriviID,TilausID,TuoteID,Maara,Ahinta")] Tilausrivit tilausrivit)
         {
             if (ModelState.IsValid)
             {
-                db.Henkilot.Add(henkilot);
+                db.Tilausrivit.Add(tilausrivit);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(henkilot);
+            ViewBag.TilausID = new SelectList(db.Tilaukset, "TilausID", "Toimitusosoite", tilausrivit.TilausID);
+            ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi", tilausrivit.TuoteID);
+            return View(tilausrivit);
         }
 
-        // GET: Henkilotdb/Edit/5
+        // GET: Tilausrivitdb/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Tilausrivit tilausrivit = db.Tilausrivit.Find(id);
+            if (tilausrivit == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            ViewBag.TilausID = new SelectList(db.Tilaukset, "TilausID", "Toimitusosoite", tilausrivit.TilausID);
+            ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi", tilausrivit.TuoteID);
+            return View(tilausrivit);
         }
 
-        // POST: Henkilotdb/Edit/5
+        // POST: Tilausrivitdb/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Henkilo_id,Etunimi,Sukunimi,Osoite,Esimies,Postinumero,Sahkoposti")] Henkilot henkilot)
+        public ActionResult Edit([Bind(Include = "TilausriviID,TilausID,TuoteID,Maara,Ahinta")] Tilausrivit tilausrivit)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(henkilot).State = EntityState.Modified;
+                db.Entry(tilausrivit).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(henkilot);
+            ViewBag.TilausID = new SelectList(db.Tilaukset, "TilausID", "Toimitusosoite", tilausrivit.TilausID);
+            ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi", tilausrivit.TuoteID);
+            return View(tilausrivit);
         }
 
-        // GET: Henkilotdb/Delete/5
+        // GET: Tilausrivitdb/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Henkilot henkilot = db.Henkilot.Find(id);
-            if (henkilot == null)
+            Tilausrivit tilausrivit = db.Tilausrivit.Find(id);
+            if (tilausrivit == null)
             {
                 return HttpNotFound();
             }
-            return View(henkilot);
+            return View(tilausrivit);
         }
 
-        // POST: Henkilotdb/Delete/5
+        // POST: Tilausrivitdb/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Henkilot henkilot = db.Henkilot.Find(id);
-            db.Henkilot.Remove(henkilot);
+            Tilausrivit tilausrivit = db.Tilausrivit.Find(id);
+            db.Tilausrivit.Remove(tilausrivit);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

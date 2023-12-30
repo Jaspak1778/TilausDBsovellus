@@ -17,15 +17,8 @@ namespace MVC_TKsovellus_1001.Controllers
         // GET: Asiakkaatdb
         public ActionResult Index()
         {
-            if (Session["UserName"] == null)
-            {
-                return RedirectToAction("login", "home");
-            }
-            else
-            {
-                var asiakkaat = db.Asiakkaat.Include(a => a.Postitoimipaikat);
-                return View(asiakkaat.ToList());
-            }
+            var asiakkaat = db.Asiakkaat.Include(a => a.Postitoimipaikat);
+            return View(asiakkaat.ToList());
         }
 
         // GET: Asiakkaatdb/Details/5
@@ -43,28 +36,38 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(asiakkaat);
         }
 
-        // GET: Asiakkaatdb/Create
+
+        public ActionResult GetCity(string postalCode)
+        {
+            var city = db.Postitoimipaikat
+                .Where(p => p.Postinumero == postalCode)
+                .Select(p => p.Postitoimipaikka)
+                .FirstOrDefault();
+
+            return Content(city);
+        }
         public ActionResult Create()
         {
-            ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka");
+            // Populate dropdown with postal codes
+            ViewBag.PostinumeroList = new SelectList(db.Postitoimipaikat.Select(p => p.Postinumero).Distinct().ToList());
             return View();
         }
 
-        // POST: Asiakkaatdb/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "AsiakasID,Nimi,Osoite,Postinumero")] Asiakkaat asiakkaat)
         {
             if (ModelState.IsValid)
             {
+                //Tallentaa tiedot kantaan
+                //asiakkaat olio sisältää tiedot; ID, Nimi, Osoite ja Postinumeron
                 db.Asiakkaat.Add(asiakkaat);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka", asiakkaat.Postinumero);
+            // If ModelState is not valid, repopulate the dropdown
+            ViewBag.PostitoimipaikkaList = new SelectList(db.Postitoimipaikat, "Postitoimipaikka", "Postitoimipaikka");
             return View(asiakkaat);
         }
 
@@ -80,7 +83,7 @@ namespace MVC_TKsovellus_1001.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Postinumero = new SelectList(db.Postitoimipaikat, "Postinumero", "Postitoimipaikka", asiakkaat.Postinumero);
+            ViewBag.PostinumeroList = new SelectList(db.Postitoimipaikat.Select(p => p.Postinumero).Distinct().ToList());
             return View(asiakkaat);
         }
 
@@ -89,7 +92,7 @@ namespace MVC_TKsovellus_1001.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AsiakasID,Nimi,Osoite,Postinumero")] Asiakkaat asiakkaat)
+        public ActionResult Edit([Bind(Include = "AsiakasID,Nimi,Osoite,Postinumero,Puhelinumero,Sähköposti")] Asiakkaat asiakkaat)
         {
             if (ModelState.IsValid)
             {

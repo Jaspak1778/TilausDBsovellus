@@ -45,9 +45,9 @@
                 @Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.TilausID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.TilausID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.TilausID })
+                <a class="btn btn-primary btm-sm" href="/Tilauksetdb/Edit?id=@item.TilausID">Muokkaa</a>
+                <a class="btn btn-info btm-sm" href="/Tilauksetdb/Details?id=@item.TilausID">Lisätiedot</a>
+                <a class="btn btn-danger btm-sm" href="/Tilauksetdb/Delete?id=@item.TilausID">Poista</a>
             </td>
         </tr>
     }

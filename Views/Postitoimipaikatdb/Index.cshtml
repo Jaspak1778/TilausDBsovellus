@@ -4,16 +4,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Postitoimipaikat</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <a class="btn btn-primary btm-sm" href="/Postitoimipaikatdb/Create">Lisää</a>
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Postitoimipaikka)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Postinumero)
+        </th>
+
         <th></th>
     </tr>
 
@@ -23,9 +27,11 @@
             @Html.DisplayFor(modelItem => item.Postitoimipaikka)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Postinumero }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Postinumero }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Postinumero })
+            @Html.DisplayFor(modelItem => item.Postinumero)
+        </td>
+        <td>
+            <a class="btn btn-primary btm-sm" href="/Postitoimipaikatdb/Edit?id=@item.Postinumero">Muokkaa</a>
+            <a class="btn btn-danger btm-sm" href="/Postitoimipaikatdb/Delete?id=@item.Postinumero">Poista</a>
         </td>
     </tr>
 }

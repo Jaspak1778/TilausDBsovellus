@@ -4,15 +4,15 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Asiakkaat</h2>
+<h2>Asiakkaat: Muokkaa</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Muokkaa asiakastietoja</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.AsiakasID)
@@ -33,26 +33,79 @@
             </div>
         </div>
 
+        <!--Postinumero ja kaupunki listaus--->
+
         <div class="form-group">
             @Html.LabelFor(model => model.Postinumero, "Postinumero", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Postinumero", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Postinumero", ViewBag.PostinumeroList as SelectList, new { @class = "form-control", id = "PostalCodeDropdown" })
                 @Html.ValidationMessageFor(model => model.Postinumero, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
+            @Html.Label("Postitoimipaikka", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <span style="height: 38px; width: 275px" id="CityDisplay" class="form-control"></span>
+            </div>
+        </div>
+
+        <!--Lisätiedot osio-->
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sähköposti, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Sähköposti, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Sähköposti, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Puhelinumero, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Puhelinumero, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Puhelinumero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--Buttonien layout-->
+
+        <p></p>
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Tallenna" class="btn btn-outline-dark" />
+                <input type="submit" value="Tallenna" class="btn btn-primary" />
+                <a class="btn btn-primary btm-sm" href="/Asiakkaatdb/Index">Asiakaslista</a>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Takaisin", "Index")
-</div>
+<!--JScriptit-->
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    $(document).ready(function () {
+        $("#PostalCodeDropdown").change(function () {
+            var selectedPostalCode = $(this).val();
+
+            $.ajax({
+                url: '@Url.Action("GetCity", "Asiakkaatdb")',
+                type: 'GET',
+                data: { postalCode: selectedPostalCode },
+                success: function (data) {
+                    $("#CityDisplay").text(data);
+                },
+                error: function () {
+                    console.log("Error retrieving city");
+                }
+            });
+        });
+    });
+    </script>
+
+
+
+
 }

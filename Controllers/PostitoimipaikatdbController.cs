@@ -35,11 +35,18 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(postitoimipaikat);
         }
 
-        // GET: Postitoimipaikatdb/Create
+   
         public ActionResult Create()
         {
             return View();
         }
+
+        public ActionResult CreateA()
+        {
+            return View();
+        }
+
+
 
         // POST: Postitoimipaikatdb/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -57,6 +64,21 @@ namespace MVC_TKsovellus_1001.Controllers
 
             return View(postitoimipaikat);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateA([Bind(Include = "Postinumero,Postitoimipaikka")] Postitoimipaikat postitoimipaikat)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Postitoimipaikat.Add(postitoimipaikat);
+                db.SaveChanges();
+                return RedirectToAction("Create","Asiakkaatdb");
+            }
+
+            return View(postitoimipaikat);
+        }
+
 
         // GET: Postitoimipaikatdb/Edit/5
         public ActionResult Edit(string id)

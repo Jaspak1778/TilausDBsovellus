@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Lisätiedot</h2>
+<h2>Asiakkaat: Lisätiedot</h2>
 
 <div>
-    <h4>Asiakkaat</h4>
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -34,9 +34,36 @@
             @Html.DisplayFor(model => model.Postitoimipaikat.Postitoimipaikka)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Postinumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Postinumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Puhelinumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Puhelinumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sähköposti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sähköposti)
+        </dd>
+
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Muokkaa", "Edit", new { id = Model.AsiakasID }) |
-    @Html.ActionLink("Takaisin", "Index")
-</p>
+
+<p></p>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <a class="btn btn-secondary btm-sm" href="/Asiakkaatdb/Index">Takaisin</a>
+    </div>
+</div>
