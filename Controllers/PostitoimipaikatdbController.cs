@@ -14,13 +14,13 @@ namespace MVC_TKsovellus_1001.Controllers
     {
         private TilauksetEntities db = new TilauksetEntities();
 
-        // GET: Postitoimipaikatdb
+        [CheckSession]
         public ActionResult Index()
         {
             return View(db.Postitoimipaikat.ToList());
         }
 
-        // GET: Postitoimipaikatdb/Details/5
+        [CheckSession]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -35,7 +35,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(postitoimipaikat);
         }
 
-   
+        [CheckSession]
         public ActionResult Create()
         {
             return View();
@@ -80,7 +80,7 @@ namespace MVC_TKsovellus_1001.Controllers
         }
 
 
-        // GET: Postitoimipaikatdb/Edit/5
+        [CheckSession]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -111,7 +111,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(postitoimipaikat);
         }
 
-        // GET: Postitoimipaikatdb/Delete/5
+        [CheckSession]
         public ActionResult Delete(string id)
         {
             if (id == null)

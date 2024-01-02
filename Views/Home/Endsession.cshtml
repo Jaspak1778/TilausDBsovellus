@@ -1,15 +1,33 @@
-﻿
+﻿@model MVC_TKsovellus_1001.Models.Logins
 @using System.Globalization
 @{
     ViewBag.Title = "Session end";
 }
 
+<head>
+    <meta http-equiv="Refresh" content="5; url=https://localhost:44314" />
+</head>
 <main>
+    <section " aria-labelledby="aspnetTitle">
 
 
-    <section class="row" aria-labelledby="aspnetTitle">
         <h1 id="title">@ViewBag.LoggedOut</h1>
-        <a class="btn btn-outline-primary" href="/Home/Login"> Takaisin kirjautumis sivulle</a>
+        <p></p>
+
+        <hr />
+
+        <div class="table table-hover; col-md-6">
+            <p>Ellei uudeellen ohjaus toimi, voit siirtyä tämän linkin kautta</p>
+            <p></p>
+            <a class="btn btn-primary" href="/Home/Index"> Etusivulle </a>
+            <p></p>
+            <br />
+            <br />
+            <hr />
+            <h5>Uudelleenohjaus etusivulle..</h5>
+            <h5>Kiitos ohjelman käytöstä</h5>
+        </div>
+
     </section>
 
 

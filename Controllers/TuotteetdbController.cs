@@ -14,25 +14,18 @@ namespace MVC_TKsovellus_1001.Controllers
     {
         private TilauksetEntities db = new TilauksetEntities();
 
-        // GET: Tuotteetdb
+        [CheckSession]
         public ActionResult Index()
         {
-            if (Session["UserName"] == null)
-            {
-                return RedirectToAction("login", "home");
-            }
-            else
-            {
-                return View(db.Tuotteet.ToList());
-            }
+            return View(db.Tuotteet.ToList());
         }
-
+    
         public ActionResult CardIndex()
         {
             return View(db.Tuotteet.ToList());
         }
 
-        // GET: Tuotteetdb/Details/5
+        [CheckSession]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -47,7 +40,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tuotteet);
         }
 
-        // GET: Tuotteetdb/Create
+        [CheckSession]
         public ActionResult Create()
         {
             return View();
@@ -70,7 +63,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tuotteet);
         }
 
-        // GET: Tuotteetdb/Edit/5
+        [CheckSession]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,7 +94,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tuotteet);
         }
 
-        // GET: Tuotteetdb/Delete/5
+        [CheckSession]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,7 +109,6 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tuotteet);
         }
 
-        // POST: Tuotteetdb/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

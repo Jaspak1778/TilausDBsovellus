@@ -8,35 +8,23 @@ using System.Web.UI.WebControls;
 
 namespace MVC_TKsovellus_1001.Controllers
 {
+
     public class HomeController : Controller
     {
-
+        
         public ActionResult Index()
         {
-            if (Session["UserName"] == null)
-            {
-                
-                ViewBag.LoggedStatus = "Out";
-                
-                return View();
-            }
-            else ViewBag.LoggedStatus = "In";
             return View();
         }
 
         public ActionResult About()
         {
-            if (Session["UserName"] == null)
-            {
-                return RedirectToAction("login", "home");
-            }
-            else
-            {
-                ViewBag.Message = "Yhtiön perustietojen kuvailua";
-                ViewBag.Herja = "Ota yhteyttä!";
+            
+            ViewBag.Message = "Yhtiön perustietojen kuvailua";
+            ViewBag.Herja = "Ota yhteyttä!";
 
-                return View();
-            }
+            return View();
+            
         }
 
         public ActionResult Contact()
@@ -83,18 +71,14 @@ namespace MVC_TKsovellus_1001.Controllers
         public ActionResult LogOut()
         {
             Session.Abandon();
-            
-            ViewBag.LoggedStatus = "Out";
             return RedirectToAction("Endsession", "Home"); //Uloskirjautumisen jälkeen pääsivulle
         }
         public ActionResult Endsession()
         {
 
-            Session.Abandon();
-            
+            Session.Clear();
             ViewBag.LoggedOut = "Olet kirjautunut ulos järjestelmästä.";
-            return View(); //We have a special wiev LoggedOut which is a copy of Index, but has additional viewbag message of
-                           //succesfull logout and possibility to login again.
+            return View();
         }
     }
 }

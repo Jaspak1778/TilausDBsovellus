@@ -24,7 +24,8 @@ namespace MVC_TKsovellus_1001
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrapstone.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/oma1.css"));
         }
     }
 }

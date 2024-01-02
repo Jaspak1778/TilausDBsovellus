@@ -1,49 +1,42 @@
 ﻿@model IEnumerable<MVC_TKsovellus_1001.Models.Tilaukset>
 
+
 @{
-    
+
 }
 
-    <p>
-        <a class="btn btn-primary btm-sm" href="/Tilauksetdb/Create">Lisää tilaus</a>
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                Toimitusosoite
-            </th>
-            <th>
-                Tilauspvm
-            </th>
-            <th>
-                Toimituspvm
-            </th>
-            <th>
-                Asiakkaat.Nimi
-            </th>
-            <th>
-                Postitoimipaikka
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
+<p>
+    <a class="btn btn-primary btm-sm" href="/Tilauksetdb/Create">Lisää tilaus</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Tilausnumero
+        </th>
+        <th>
+            Tilauspvm
+        </th>
+        <th>
+            Toimituspvm
+        </th>
+        <th>
+            Tilauksen hinta
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Toimitusosoite)
+                @Html.DisplayFor(modelItem => item.TilausID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tilauspvm)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Toimituspvm)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Asiakkaat.Nimi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)
-            </td>
+            <th>
+                Tilauksen hinta
+            </th>
             <td>
                 <a class="btn btn-primary btm-sm" href="/Tilauksetdb/Edit?id=@item.TilausID">Muokkaa</a>
                 <a class="btn btn-info btm-sm" href="/Tilauksetdb/Details?id=@item.TilausID">Lisätiedot</a>
@@ -51,5 +44,6 @@
             </td>
         </tr>
     }
-    
-    </table>
+
+</table>
+

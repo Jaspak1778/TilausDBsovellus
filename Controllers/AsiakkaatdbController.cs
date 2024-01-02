@@ -11,17 +11,17 @@ using MVC_TKsovellus_1001.Models;
 namespace MVC_TKsovellus_1001.Controllers
 {
     public class AsiakkaatdbController : Controller
-    {
+    {   
         private TilauksetEntities db = new TilauksetEntities();
 
-        // GET: Asiakkaatdb
+        [CheckSession]
         public ActionResult Index()
         {
             var asiakkaat = db.Asiakkaat.Include(a => a.Postitoimipaikat);
             return View(asiakkaat.ToList());
         }
 
-        // GET: Asiakkaatdb/Details/5
+        [CheckSession]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -46,16 +46,17 @@ namespace MVC_TKsovellus_1001.Controllers
 
             return Content(city);
         }
+        [CheckSession]
         public ActionResult Create()
         {
-            // Populate dropdown with postal codes
+
             ViewBag.PostinumeroList = new SelectList(db.Postitoimipaikat.Select(p => p.Postinumero).Distinct().ToList());
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AsiakasID,Nimi,Osoite,Postinumero")] Asiakkaat asiakkaat)
+        public ActionResult Create([Bind(Include = "AsiakasID,Nimi,Osoite,Postinumero,Puhelinumero,Sähköposti")] Asiakkaat asiakkaat)
         {
             if (ModelState.IsValid)
             {
@@ -71,9 +72,10 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(asiakkaat);
         }
 
-        // GET: Asiakkaatdb/Edit/5
+        [CheckSession]
         public ActionResult Edit(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -104,7 +106,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(asiakkaat);
         }
 
-        // GET: Asiakkaatdb/Delete/5
+        [CheckSession]
         public ActionResult Delete(int? id)
         {
             if (id == null)
