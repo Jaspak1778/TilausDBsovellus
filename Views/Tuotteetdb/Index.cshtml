@@ -1,47 +1,32 @@
 ﻿@model IEnumerable<MVC_TKsovellus_1001.Models.Tuotteet>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tuotteet";
 }
 
-<h2>Tuotteet</h2>
+<h3>Tuotteet</h3>
 <p>
     <a class="btn btn-primary btm-sm" href="/Tuotteetdb/Create">Lisää tuote</a>
+    <a class="btn btn-primary btm-sm" href="/Tuotteetdb/CardIndex">Tuotteiden esittelynäkymä</a>
 </p>
 <table class="table">
     <tr>
-        <th>
-            Nimi
-        </th>
-        <th>
-            Ahinta
-        </th>
-        <th>
-            Kuva
-        </th>
-        <th></th>
-    </tr>
+        <th>Nimi</th>
+        <th>Ahinta</th>
+        <th>Kuva</th>
+       </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nimi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ahinta)
-            </td>
-            <td>
-                <img style="height: 100px; width: 100px; display: block;" src="@item.Kuva" /><img />
-            </td>
+            <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
+            <td>@Html.DisplayFor(modelItem => item.Ahinta)</td>
+            <td><a href="@item.Kuva"; target="_blank" ><img style="height: 100px; width: 100px; display: block;" src="@item.Kuva"/><img /></a></td>
             <td>
                 <a class="btn btn-primary btm-sm" href="/Tuotteetdb/Edit?id=@item.TuoteID">Muokkaa</a>
-                
-                <a class="btn btn-light btm-sm" href="/Tuotteetdb/Details?id=@item.TuoteID">Lisätiedot</a>
-                
+                <a class="btn btn-info btm-sm" href="/Tuotteetdb/Details?id=@item.TuoteID">Lisätiedot</a>
                 <a class="btn btn-danger btm-sm" href="/Tuotteetdb/Delete?id=@item.TuoteID">Poista</a>
             </td>
         </tr>
     }
-
 </table>

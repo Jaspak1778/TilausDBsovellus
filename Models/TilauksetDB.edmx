@@ -5,19 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="TilauksetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'Tilaukset.dbo.Asetukset' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Asetukset">
-          <Property Name="Yrityksen_nimi" Type="nvarchar" MaxLength="50" />
-          <Property Name="Osoite" Type="nvarchar" MaxLength="50" />
-          <Property Name="Postinumero" Type="numeric" Precision="30" Scale="0" />
-          <Property Name="Puhelin" Type="varchar" MaxLength="50" />
-          <Property Name="sähköposti" Type="nvarchar" MaxLength="50" />
-          <Property Name="asetus_1" Type="varchar" MaxLength="50" />
-          <Property Name="asetus_2" Type="varchar" MaxLength="50" />
-          <Property Name="infoc_1" Type="nvarchar" MaxLength="50" />
-          <Property Name="infoc_2" Type="nvarchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="Asiakkaat">
           <Key>
             <PropertyRef Name="AsiakasID" />
@@ -48,6 +35,7 @@ warning 6013: The table/view 'Tilaukset.dbo.Asetukset' does not have a primary k
           <Property Name="LoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PassWord" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="admin" Type="int" />
         </EntityType>
         <EntityType Name="Postitoimipaikat">
           <Key>
@@ -206,14 +194,6 @@ warning 6013: The table/view 'Tilaukset.dbo.Asetukset' does not have a primary k
           <Property Name="Postinumero" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
           <Property Name="Sahkoposti" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Logins">
-          <Key>
-            <PropertyRef Name="LoginId" />
-          </Key>
-          <Property Name="LoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="PassWord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="Postitoimipaikat">
           <Key>
             <PropertyRef Name="Postinumero" />
@@ -324,7 +304,6 @@ warning 6013: The table/view 'Tilaukset.dbo.Asetukset' does not have a primary k
         <EntityContainer Name="TilauksetEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Asiakkaat" EntityType="Self.Asiakkaat" />
           <EntitySet Name="Henkilot" EntityType="Self.Henkilot" />
-          <EntitySet Name="Logins" EntityType="Self.Logins" />
           <EntitySet Name="Postitoimipaikat" EntityType="Self.Postitoimipaikat" />
           <EntitySet Name="Tilaukset" EntityType="Self.Tilaukset" />
           <EntitySet Name="Tilausrivit" EntityType="Self.Tilausrivit" />
@@ -349,7 +328,17 @@ warning 6013: The table/view 'Tilaukset.dbo.Asetukset' does not have a primary k
             <End Role="Tuotteet" EntitySet="Tuotteet" />
             <End Role="Tilausrivit" EntitySet="Tilausrivit" />
           </AssociationSet>
+          <EntitySet Name="Logins" EntityType="TilauksetModel.Logins" />
         </EntityContainer>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="LoginId" />
+          </Key>
+          <Property Name="LoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="admin" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -378,15 +367,6 @@ warning 6013: The table/view 'Tilaukset.dbo.Asetukset' does not have a primary k
                 <ScalarProperty Name="Esimies" ColumnName="Esimies" />
                 <ScalarProperty Name="Postinumero" ColumnName="Postinumero" />
                 <ScalarProperty Name="Sahkoposti" ColumnName="Sahkoposti" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Logins">
-            <EntityTypeMapping TypeName="TilauksetModel.Logins">
-              <MappingFragment StoreEntitySet="Logins">
-                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -430,6 +410,16 @@ warning 6013: The table/view 'Tilaukset.dbo.Asetukset' does not have a primary k
                 <ScalarProperty Name="Kuva" ColumnName="Kuva" />
                 <ScalarProperty Name="Lisätieto_1" ColumnName="Lisätieto_1" />
                 <ScalarProperty Name="Lisätieto_2" ColumnName="Lisätieto_2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="TilauksetModel.Logins">
+              <MappingFragment StoreEntitySet="Logins">
+                <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

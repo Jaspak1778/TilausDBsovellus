@@ -4,39 +4,30 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Tuotteet: Lisätiedot</h2>
+<h3>Tuotteet: Lisätiedot</h3>
 
 <div>
 
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nimi)
-        </dt>
+        <dt>Nimi</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nimi)
-        </dd>
+        <dd>@Html.DisplayFor(model => model.Nimi)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ahinta)
-        </dt>
+        <dt>Hinta</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ahinta)
-        </dd>
+        <dd>@Html.DisplayFor(model => model.Ahinta)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Kuva)
-        </dt>
+        <dt>Selite</dt>
+        
+        <dd style="font:200">@Html.DisplayFor(model => model.Lisätieto_1)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Kuva)
-        </dd>
+        <dt>Kuva</dt>
+
+        <dd><img style="height: 200px; width: 200px; display: block;" src="@Model.Kuva" /><img /></dd>
 
     </dl>
 </div>
 <p>
-    <a class="btn btn-primary btm-sm" href="~/Tuotteetdb/Edit?id=@Model.TuoteID">Muokkaa</a>
     <a class="btn btn-primary btm-sm" href="~/Tuotteetdb/Index">Takaisin</a>
 </p>

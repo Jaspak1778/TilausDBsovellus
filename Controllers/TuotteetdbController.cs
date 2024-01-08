@@ -46,12 +46,10 @@ namespace MVC_TKsovellus_1001.Controllers
             return View();
         }
 
-        // POST: Tuotteetdb/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TuoteID,Nimi,Ahinta,Kuva")] Tuotteet tuotteet)
+        [CheckSession]
+        public ActionResult Create([Bind(Include = "TuoteID,Nimi,Ahinta,Kuva,Lisätieto_1")] Tuotteet tuotteet)
         {
             if (ModelState.IsValid)
             {
@@ -78,12 +76,10 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tuotteet);
         }
 
-        // POST: Tuotteetdb/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TuoteID,Nimi,Ahinta,Kuva")] Tuotteet tuotteet)
+        [CheckSession]
+        public ActionResult Edit([Bind(Include = "TuoteID,Nimi,Ahinta,Kuva,Lisätieto_1")] Tuotteet tuotteet)
         {
             if (ModelState.IsValid)
             {
@@ -111,6 +107,7 @@ namespace MVC_TKsovellus_1001.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult DeleteConfirmed(int id)
         {
             Tuotteet tuotteet = db.Tuotteet.Find(id);

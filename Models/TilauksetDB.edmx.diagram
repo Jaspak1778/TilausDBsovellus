@@ -7,7 +7,6 @@
       <Diagram DiagramId="542b92bc77c7426991181fe326e23166" Name="Diagram1">
         <EntityTypeShape EntityType="TilauksetModel.Asiakkaat" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="TilauksetModel.Henkilot" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TilauksetModel.Logins" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TilauksetModel.Postitoimipaikat" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TilauksetModel.Tilaukset" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="TilauksetModel.Tilausrivit" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
@@ -17,6 +16,7 @@
         <AssociationConnector Association="TilauksetModel.FK_Tilaukset_Postitoimipaikat" ManuallyRouted="false" />
         <AssociationConnector Association="TilauksetModel.FK_Tilausrivit_Tilaukset" ManuallyRouted="false" />
         <AssociationConnector Association="TilauksetModel.FK_Tilausrivit_Tuotteet" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TilauksetModel.Logins" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

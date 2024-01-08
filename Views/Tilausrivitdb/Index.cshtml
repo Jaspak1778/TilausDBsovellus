@@ -1,52 +1,41 @@
 ﻿@model IEnumerable<MVC_TKsovellus_1001.Models.Tilausrivit>
-
 @{
-    
 }
-
-
 <p>
-    <a class="btn btn-primary btm-sm" href="/Tilausrivitdb/Create">Lisää tilaus</a>
+    <a class="btn btn-primary btm-sm" href="/Tilausrivitdb/Create">Lisää tilausrivi</a>
 </p>
-    <table class="table">
+<table class="table">
+
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Maara)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ahinta)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tilaukset.Toimitusosoite)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tuotteet.Nimi)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.TilausID)</th>
+
+            <th>@Html.DisplayNameFor(model => model.Maara)</th>
+
+            <th>@Html.DisplayNameFor(model => model.Ahinta)</th>
+
+            <th>@Html.DisplayNameFor(model => model.Tilaukset.Toimitusosoite)</th>
+
+            <th>@Html.DisplayNameFor(model => model.Tuotteet.Nimi)</th>
+
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Maara)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ahinta)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tilaukset.Toimitusosoite)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tuotteet.Nimi)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.TilausriviID }) |
-                @Html.ActionLink("Details", "Details", new { id=item.TilausriviID }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.TilausriviID })
-            </td>
-        </tr>
-    }
-    
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TilausID)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Maara)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Ahinta)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Tilaukset.Toimitusosoite)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Tuotteet.Nimi)</td>
+
+                <td>
+                    <a class="btn btn-primary btm-sm" href="/Tilausrivitdb/Edit?id=@item.TilausriviID">Muokkaa</a>
+                    <a class="btn btn-info btm-sm" href="/Tilausrivitdb/Details?id=@item.TilausriviID">Lisätiedot</a>
+                    <a class="btn btn-danger btm-sm" href="/Tilausrivitdb/Delete?id=@item.TilausriviID">Poista</a>
+                </td>
+            </tr>
+        }
     </table>
-</body>
-</html>

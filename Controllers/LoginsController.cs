@@ -13,14 +13,14 @@ namespace MVC_TKsovellus_1001.Controllers
     public class LoginsController : Controller
     {
         private TilauksetEntities db = new TilauksetEntities();
-
-        // GET: Logins
+        [CheckSession]
+        [CheckAdmin]
         public ActionResult Index()
-        {
+        {   
             return View(db.Logins.ToList());
         }
 
-        // GET: Logins/Details/5
+        [CheckSession]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,18 +35,16 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(logins);
         }
 
-        // GET: Logins/Create
+        [CheckSession]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Logins/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LoginId,UserName,PassWord")] Logins logins)
+        public ActionResult Create([Bind(Include = "LoginId,UserName,PassWord,admin")] Logins logins)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +56,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(logins);
         }
 
-        // GET: Logins/Edit/5
+        [CheckSession]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,12 +71,10 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(logins);
         }
 
-        // POST: Logins/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LoginId,UserName,PassWord")] Logins logins)
+        public ActionResult Edit([Bind(Include = "LoginId,UserName,PassWord,admin")] Logins logins)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +85,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(logins);
         }
 
-        // GET: Logins/Delete/5
+        [CheckSession]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +100,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(logins);
         }
 
-        // POST: Logins/Delete/5
+        [CheckSession]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -113,6 +109,11 @@ namespace MVC_TKsovellus_1001.Controllers
             db.Logins.Remove(logins);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Kielletty() 
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

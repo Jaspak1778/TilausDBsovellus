@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVC_TKsovellus_1001.Models;
+using System.Diagnostics;
 
 namespace MVC_TKsovellus_1001.Controllers
 {
@@ -37,25 +38,28 @@ namespace MVC_TKsovellus_1001.Controllers
         }
 
         [CheckSession]
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.TilausID = new SelectList(db.Tilaukset, "TilausID", "Toimitusosoite");
+            Tilausrivit tilausrivit = new Tilausrivit();
+
+            tilausrivit.TilausID = id.GetValueOrDefault();
+
             ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi");
-            return View();
+            return View(tilausrivit);
+            
         }
 
-        // POST: Tilausrivitdb/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TilausriviID,TilausID,TuoteID,Maara,Ahinta")] Tilausrivit tilausrivit)
+        [CheckSession]
+        public ActionResult Create([Bind(Include = "TilausID,TuoteID,Maara,Ahinta")] Tilausrivit tilausrivit)
         {
             if (ModelState.IsValid)
-            {
+            {   
+
                 db.Tilausrivit.Add(tilausrivit);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Tilauksetdb");
             }
 
             ViewBag.TilausID = new SelectList(db.Tilaukset, "TilausID", "Toimitusosoite", tilausrivit.TilausID);
@@ -80,18 +84,16 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tilausrivit);
         }
 
-        // POST: Tilausrivitdb/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult Edit([Bind(Include = "TilausriviID,TilausID,TuoteID,Maara,Ahinta")] Tilausrivit tilausrivit)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(tilausrivit).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Tilauksetdb");
             }
             ViewBag.TilausID = new SelectList(db.Tilaukset, "TilausID", "Toimitusosoite", tilausrivit.TilausID);
             ViewBag.TuoteID = new SelectList(db.Tuotteet, "TuoteID", "Nimi", tilausrivit.TuoteID);
@@ -113,9 +115,9 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tilausrivit);
         }
 
-        // POST: Tilausrivitdb/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult DeleteConfirmed(int id)
         {
             Tilausrivit tilausrivit = db.Tilausrivit.Find(id);

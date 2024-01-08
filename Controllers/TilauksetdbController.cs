@@ -14,14 +14,14 @@ namespace MVC_TKsovellus_1001.Controllers
     {
         private TilauksetEntities db = new TilauksetEntities();
 
-        [CheckSession]
+        // GET: Tilauksetdb
         public ActionResult Index()
         {
             var tilaukset = db.Tilaukset.Include(t => t.Asiakkaat).Include(t => t.Postitoimipaikat);
             return View(tilaukset.ToList());
         }
 
-        [CheckSession]
+        // GET: Tilauksetdb/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,11 +33,10 @@ namespace MVC_TKsovellus_1001.Controllers
             {
                 return HttpNotFound();
             }
-
             return View(tilaukset);
         }
 
-        [CheckSession]
+        // GET: Tilauksetdb/Create
         public ActionResult Create()
         {
             ViewBag.AsiakasID = new SelectList(db.Asiakkaat, "AsiakasID", "Nimi");
@@ -64,7 +63,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tilaukset);
         }
 
-        [CheckSession]
+        // GET: Tilauksetdb/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,7 +98,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tilaukset);
         }
 
-        [CheckSession]
+        // GET: Tilauksetdb/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -135,3 +134,4 @@ namespace MVC_TKsovellus_1001.Controllers
         }
     }
 }
+

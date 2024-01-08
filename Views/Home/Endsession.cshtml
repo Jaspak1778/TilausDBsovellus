@@ -1,34 +1,36 @@
 ﻿@model MVC_TKsovellus_1001.Models.Logins
 @using System.Globalization
 @{
-    ViewBag.Title = "Session end";
+    ViewBag.Title = "Uloskirjautuminen..";
 }
 
 <head>
     <meta http-equiv="Refresh" content="5; url=https://localhost:44314" />
 </head>
-<main>
-    <section " aria-labelledby="aspnetTitle">
+<body background="/Images/bgr1.jpeg">
+    <main>
+        <section aria-labelledby="title">
 
 
-        <h1 id="title">@ViewBag.LoggedOut</h1>
-        <p></p>
-
-        <hr />
-
-        <div class="table table-hover; col-md-6">
-            <p>Ellei uudeellen ohjaus toimi, voit siirtyä tämän linkin kautta</p>
+            <h1 style="font-family:'Times New Roman', Times, serif">@ViewBag.LoggedOut</h1>
             <p></p>
-            <a class="btn btn-primary" href="/Home/Index"> Etusivulle </a>
-            <p></p>
-            <br />
-            <br />
+
             <hr />
-            <h5>Uudelleenohjaus etusivulle..</h5>
-            <h5>Kiitos ohjelman käytöstä</h5>
-        </div>
 
-    </section>
+            <div class="table table-hover; col-md-6">
+                <p>Ellei uudeellen ohjaus toimi, voit siirtyä tämän linkin kautta</p>
+                <p></p>
+                <a class="btn btn-primary" href="/Home/Index"> Etusivulle </a>
+                <p></p>
+                <br />
+                <br />
+                <hr />
+                <h5>Uudelleenohjaus etusivulle..</h5>
+                <h5>Kiitos ohjelman käytöstä</h5>
+            </div>
+
+        </section>
 
 
-</main>
+    </main>
+</body>

@@ -4,52 +4,58 @@
     ViewBag.Title = "Index";
 }
 
+<h3>Asiakkaat</h3>
 
-<h2>Asiakkaat</h2>
-
-<p>
+<p></p>
     <a class="btn btn-primary btm-sm" href="/Asiakkaatdb/Create">Lisää asiakas</a>
-</p>
+<p></p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nimi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Osoite)
-        </th>
-        <th>
-            <!--postinumero tähän-->
-            @Html.DisplayNameFor(model => model.Postinumero)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nimi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Osoite)
-            </td>
-            <td>
-                <!--postinumero tähän-->
-                @Html.DisplayFor(modelItem => item.Postinumero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)
-            </td>
-            <td>
-                <a class="btn btn-primary btm-sm" href="/Asiakkaatdb/Edit?id=@item.AsiakasID">Muokkaa</a>
-                <a class="btn btn-info btm-sm" href="/Asiakkaatdb/Details?id=@item.AsiakasID">Lisätiedot</a>
-                <a class="btn btn-danger btm-sm" href="/Asiakkaatdb/Delete?id=@item.AsiakasID">Poista</a>
-            </td>
-        </tr>
-    }
+            <th>@Html.DisplayNameFor(model => model.Nimi)</th>
 
+            <th>@Html.DisplayNameFor(model => model.Osoite)</th>
+            <!--postinumero tähän-->
+            <th>@Html.DisplayNameFor(model => model.Postinumero)</th>
+
+            <th>@Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)</th>
+ 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.Osoite)</td>
+                <!--postinumero tähän-->
+                <td>@Html.DisplayFor(modelItem => item.Postinumero)</td>
+                
+                <td>@Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)</td>
+                <td>
+                    <a class="btn btn-primary btm-sm" href="/Asiakkaatdb/Edit?id=@item.AsiakasID">Muokkaa</a>
+                    <a class="btn btn-info btm-sm" href="/Asiakkaatdb/Details?id=@item.AsiakasID">Lisätiedot</a>
+                    <a class="btn btn-danger btm-sm" href="/Asiakkaatdb/Delete?id=@item.AsiakasID">Poista</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+            const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+            const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+            v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+            )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+            document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+            const table = th.closest('table');
+            const tbody = table.querySelector('tbody');
+            Array.from(tbody.querySelectorAll('tr'))
+            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+            .forEach(tr => tbody.appendChild(tr));
+            })));
+    </script>
+    }

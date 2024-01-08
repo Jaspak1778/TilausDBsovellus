@@ -11,29 +11,21 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Postitoimipaikka)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Postinumero)
-        </th>
-
-        <th></th>
+        <th>@Html.DisplayNameFor(model => model.Postitoimipaikka)</th>
+        
+        <th>@Html.DisplayNameFor(model => model.Postinumero)</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postitoimipaikka)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postinumero)
-        </td>
+        <td>@Html.DisplayFor(modelItem => item.Postitoimipaikka)</td>
+        
+        <td>@Html.DisplayFor(modelItem => item.Postinumero)</td>
+        
         <td>
             <a class="btn btn-primary btm-sm" href="/Postitoimipaikatdb/Edit?id=@item.Postinumero">Muokkaa</a>
             <a class="btn btn-danger btm-sm" href="/Postitoimipaikatdb/Delete?id=@item.Postinumero">Poista</a>
         </td>
     </tr>
 }
-
 </table>

@@ -56,6 +56,7 @@ namespace MVC_TKsovellus_1001.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult Create([Bind(Include = "AsiakasID,Nimi,Osoite,Postinumero,Puhelinumero,Sähköposti")] Asiakkaat asiakkaat)
         {
             if (ModelState.IsValid)
@@ -94,6 +95,7 @@ namespace MVC_TKsovellus_1001.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult Edit([Bind(Include = "AsiakasID,Nimi,Osoite,Postinumero,Puhelinumero,Sähköposti")] Asiakkaat asiakkaat)
         {
             if (ModelState.IsValid)
@@ -124,6 +126,7 @@ namespace MVC_TKsovellus_1001.Controllers
         // POST: Asiakkaatdb/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult DeleteConfirmed(int id)
         {
             Asiakkaat asiakkaat = db.Asiakkaat.Find(id);

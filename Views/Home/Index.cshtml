@@ -2,10 +2,6 @@
 @{
     ViewBag.Title = "Kotisivu";
 }
-@using System.Globalization
-@{
-    ViewBag.Title = "Kotisivu";
-}
 <style>
     main {
         margin: 1px;
@@ -16,7 +12,7 @@
 
     section {
         width: 100%;
-        margin-bottom: 20px; 
+        margin-bottom: 20px;
     }
 
     .right-section {
@@ -24,11 +20,11 @@
         float: none;
     }
 
-    .right-section h5,
-    .right-section img,
-    .right-section p {
-        text-align: center;
-    }
+        .right-section h5,
+        .right-section img,
+        .right-section p {
+            text-align: center;
+        }
 
     @@media (min-width: 768px) {
         section {
@@ -40,17 +36,21 @@
             float: right;
         }
 
-        .right-section h5,
-        .right-section img,
-        .right-section p {
-            text-align: right;
-        }
+            .right-section h5,
+            .right-section img,
+            .right-section p {
+                text-align: right;
+            }
     }
 </style>
 
+<body background="/Images/bgr1.jpeg">
     <main>
+
         <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h3>Pikalinkit</h3>
+            <h1 style="font-family:'Times New Roman', Times, serif">TilausDB hallinta</h1>
+            <p></p>
+            <h3 style="margin-left:140px; font-family:'Times New Roman', Times, serif">Pikalinkit</h3>
 
             @if (Session["UserName"] == null)
             {
@@ -66,17 +66,19 @@
             }
             else
             {
-                <div class="table table-hover; row mb-1">
-                    <a class="btn btn-primary" href="/Tuotteetdb/CardIndex"> Esittelynäkymä </a>
-                    <p></p>
-                    <a class="btn btn-primary" href="/Asiakkaatdb/Index"> Asiakkaat </a>
-                    <p></p>
-                    <a class="btn btn-primary" href="/Tuotteetdb/Index"> Tuotteet </a>
-                    <p></p>
-                    <a class="btn btn-primary" href="/Asiakkaatdb/Create"> Lisää asiakas </a>
-                    <p></p>
-                    <a class="btn btn-primary" href="/Tuotteetdb/Create"> Lisää tuote </a>
-                </div>
+        <div class="table table-hover; row mb-1">
+            <a class="btn btn-primary" href="/Tuotteetdb/CardIndex">Esittelynäkymä </a>
+            <p></p>
+            <a class="btn btn-primary" href="/Asiakkaatdb/Index"> Asiakkaat </a>
+            <p></p>
+            <a class="btn btn-primary" href="/Asiakkaatdb/Create"> Lisää asiakas </a>
+            <p></p>
+            <a class="btn btn-primary" href="/Tuotteetdb/Index"> Tuotteet </a>
+            <p></p>
+            <a class="btn btn-primary" href="/Tuotteetdb/Create"> Lisää tuote </a>
+            <p></p>
+            <a class="btn btn-primary" href="/Tilauksetdb/Index"> Tilaukset </a>
+        </div>
             }
         </section>
 
@@ -87,4 +89,7 @@
             </a>
             <p><a style="height:50px; width:300px" class="btn btn-outline-info" href="/Home/About" target="_blank">Ylläpidon yhteystiedot</a></p>
         </section>
+
     </main>
+</body>
+

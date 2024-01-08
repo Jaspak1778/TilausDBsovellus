@@ -4,35 +4,23 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Tuotteet: Poista tuote</h2>
+<h3>Tuotteet: Poista tuote</h3>
 
 <div>
 
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nimi)
-        </dt>
+        <dt>@Html.DisplayNameFor(model => model.Nimi)</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nimi)
-        </dd>
+        <dd>@Html.DisplayFor(model => model.Nimi)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ahinta)
-        </dt>
+        <dt>@Html.DisplayNameFor(model => model.Ahinta)</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ahinta)
-        </dd>
+        <dd>@Html.DisplayFor(model => model.Ahinta)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Kuva)
-        </dt>
+        <dt>@Html.DisplayNameFor(model => model.Kuva)</dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Kuva)
-        </dd>
+        <dd>@Html.DisplayFor(model => model.Kuva)</dd>
 
     </dl>
 
@@ -40,7 +28,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Poista" class="btn btn-outline-danger" /> |
+            <input type="submit" value="Poista" class="btn btn-danger" />
             <a class="btn btn-primary btm-sm" href="/Tuotteetdb/Index">Takaisin</a>
         </div>
     }

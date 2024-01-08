@@ -18,5 +18,6 @@ namespace MVC_TKsovellus_1001.Models
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public string LoginErrorMessage { get; set; }
+        public Nullable<int> admin { get; set; }
     }
 }

@@ -18,6 +18,35 @@ namespace MVC_TKsovellus_1001.Controllers
             base.OnActionExecuting(filterContext);
         }
     }
+    public class CheckAdminAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var userName = filterContext.HttpContext.Session["UserName"] as string;
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                filterContext.Result = new RedirectResult("~/home/login");
+                return;
+            }
+
+            using (TilauksetEntities db = new TilauksetEntities())
+            {
+                var user = db.Logins.SingleOrDefault(x => x.UserName == userName);
+
+                if (user.admin != 1)
+                {
+                    filterContext.Result = new RedirectResult("~/Logins/Kielletty");
+                    return;
+                    //filterContext.Result = new HttpStatusCodeResult(System.Net.HttpStatusCode.Forbidden);
+                }
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+    }
+
+
     public class LoginController : Controller
     {
         public ActionResult Login()

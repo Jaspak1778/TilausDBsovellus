@@ -53,6 +53,7 @@ namespace MVC_TKsovellus_1001.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult Create([Bind(Include = "Postinumero,Postitoimipaikka")] Postitoimipaikat postitoimipaikat)
         {
             if (ModelState.IsValid)
@@ -67,6 +68,7 @@ namespace MVC_TKsovellus_1001.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult CreateA([Bind(Include = "Postinumero,Postitoimipaikka")] Postitoimipaikat postitoimipaikat)
         {
             if (ModelState.IsValid)
@@ -100,6 +102,7 @@ namespace MVC_TKsovellus_1001.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult Edit([Bind(Include = "Postinumero,Postitoimipaikka")] Postitoimipaikat postitoimipaikat)
         {
             if (ModelState.IsValid)
@@ -129,6 +132,7 @@ namespace MVC_TKsovellus_1001.Controllers
         // POST: Postitoimipaikatdb/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CheckSession]
         public ActionResult DeleteConfirmed(string id)
         {
             Postitoimipaikat postitoimipaikat = db.Postitoimipaikat.Find(id);

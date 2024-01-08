@@ -302,6 +302,7 @@
     <Content Include="Views\Asiakkaatdb\Details.cshtml" />
     <Content Include="Views\Asiakkaatdb\Edit.cshtml" />
     <Content Include="Views\Asiakkaatdb\Index.cshtml" />
+    <Content Include="Views\Logins\Kielletty.cshtml" />
     <Content Include="Views\Postitoimipaikatdb\CreateA.cshtml" />
   </ItemGroup>
   <ItemGroup>

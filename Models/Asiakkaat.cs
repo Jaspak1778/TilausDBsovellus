@@ -26,7 +26,6 @@ namespace MVC_TKsovellus_1001.Models
         public string Postinumero { get; set; }
         public string Puhelinumero { get; set; }
         public string Sähköposti { get; set; }
-        
     
         public virtual Postitoimipaikat Postitoimipaikat { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

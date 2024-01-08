@@ -1,72 +1,46 @@
 ﻿@model MVC_TKsovellus_1001.Models.Tilaukset
-
 @{
-    
+    ViewBag.Title = "Poista tilaus";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
-</head>
 <body>
-    <h3>Are you sure you want to delete this?</h3>
+    <h3>Haluatko poistaa tilauksen</h3>
+    <h4>Huom:varmista että ostoskori on tyhjä!</h4>
     <div>
-        <h4>Tilaukset</h4>
         <hr />
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Toimitusosoite)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Toimitusosoite)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Tilauspvm)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Tilauspvm)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Toimituspvm)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Toimituspvm)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Asiakkaat.Nimi)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Asiakkaat.Nimi)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Postitoimipaikat.Postitoimipaikka)
-            </dd>
-    
+            <dt>@Html.HiddenFor(model => model.TilausID)</dt>
+
+            <dt>@Html.DisplayNameFor(model => model.Toimitusosoite)</dt>
+
+            <dd>@Html.DisplayFor(model => model.Toimitusosoite)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Tilauspvm)</dt>
+
+            <dd>@Html.DisplayFor(model => model.Tilauspvm)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Toimituspvm)</dt>
+
+            <dd>@Html.DisplayFor(model => model.Toimituspvm)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Asiakkaat.Nimi)</dt>
+
+            <dd>@Html.DisplayFor(model => model.Asiakkaat.Nimi)</dd>
+
+            <dt>@Html.DisplayNameFor(model => model.Postitoimipaikat.Postitoimipaikka)</dt>
+
+            <dd>@Html.DisplayFor(model => model.Postitoimipaikat.Postitoimipaikka)</dd>
+
         </dl>
-    
-        @using (Html.BeginForm()) {
+
+        @using (Html.BeginForm())
+        {
             @Html.AntiForgeryToken()
-    
+            <p></p>
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+                <input type="submit" value="Poista" class="btn btn-danger" />
+                <a class="btn btn-primary btm-sm" href="javascript:void(0);" onclick="history.go(-1);">Takaisin</a>
             </div>
         }
     </div>
 </body>
-</html>

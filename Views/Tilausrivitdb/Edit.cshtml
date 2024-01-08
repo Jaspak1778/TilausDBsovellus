@@ -3,7 +3,7 @@
 @{
 
 }
-<h2>Tilausrivit: Muokkaa</h2>
+<h3>Tilausrivit: Muokkaa</h3>
 
 @using (Html.BeginForm())
 {
@@ -46,15 +46,12 @@
                 @Html.ValidationMessageFor(model => model.Ahinta, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <p></p>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Tallenna" class="btn btn-primary" />
+                <a class="btn btn-primary btm-sm" href="javascript:void(0);" onclick="history.go(-1);">Takaisin</a>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

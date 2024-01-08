@@ -15,13 +15,15 @@
 
     <!--Yllä olevaan ei tarvitse koskea-->
 </head>
+
 <body style="margin: -1px">
     <!--Navbar osio-->
     @if (Session["UserName"] != null)
     {
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
-                <a class="navbar-brand">TilausDB</a>
+                <a class="navbar-brand" href="~/Home/Index">TilausDB</a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,19 +44,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/Tilauksetdb/Index">Tilaukset</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Postitoimipaikatdb/Index">Postitoimipaikat</a>
+                        </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Lisätoiminnot</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/Postitoimipaikatdb/Index">Postitoimipaikat</a>
                                 <a class="dropdown-item" href="/Tilausrivitdb/Index">Tilausrivit</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                                <a class="dropdown-item" href="/Logins/Index">Käyttäjät</a>
+                                <!-- <div class="dropdown-divider"></div> -->
+                                <!-- a class="dropdown-item" href="#">Separated link</!--a> -->
                             </div>
                         </li>
                     </ul>
 
-                    <h7 style="color: white "><a style="margin: 40px"> Kirjautuneena: @Session["UserName"] </a></h7>
+                    <h5 style="color: white "><a style="margin: 40px"> Kirjautuneena: @Session["UserName"] </a></h5>
                     <a class="btn btn-outline-light" href="~/Home/LogOut"> Kirjaudu ulos</a>
 
                 </div>
@@ -71,18 +75,21 @@
     }
     <!--Navbar osio loppuu-->
     <!---Renderöinti osio alkaa -->
+
     <div class="container body-content">
         @RenderBody()
+
         <hr />
         <footer>
             <p>@DateTime.Now.ToString("dddd") - @DateTime.Now.ToString("MMMM") - @DateTime.Now.ToString("yyy") Connected to SQL Server</p>
         </footer>
     </div>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <!---Renderöinti osio loppuu -->
-</body>
+    </body>
 </html>
 
 

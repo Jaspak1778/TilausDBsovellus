@@ -1,49 +1,58 @@
 ﻿@model IEnumerable<MVC_TKsovellus_1001.Models.Tilaukset>
-
-
 @{
-
+    ViewBag.Title = "Index";
 }
-
 <p>
     <a class="btn btn-primary btm-sm" href="/Tilauksetdb/Create">Lisää tilaus</a>
 </p>
 <table class="table">
-    <tr>
-        <th>
-            Tilausnumero
-        </th>
-        <th>
-            Tilauspvm
-        </th>
-        <th>
-            Toimituspvm
-        </th>
-        <th>
-            Tilauksen hinta
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TilausID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tilauspvm)
-            </td>
-            <th>
-                Tilauksen hinta
-            </th>
-            <td>
-                <a class="btn btn-primary btm-sm" href="/Tilauksetdb/Edit?id=@item.TilausID">Muokkaa</a>
-                <a class="btn btn-info btm-sm" href="/Tilauksetdb/Details?id=@item.TilausID">Lisätiedot</a>
-                <a class="btn btn-danger btm-sm" href="/Tilauksetdb/Delete?id=@item.TilausID">Poista</a>
-            </td>
+            <th>Tilausnumero</th>
+            <th>Tilauspvm</th>
+            <th>Tilauksen hinta</th>
+            <th>Tilauksen hallinta</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TilausID)</td>
+                
+                <td>@Html.DisplayFor(modelItem => item.Tilauspvm)</td>
+                
+                <td>
+                    @{
+                        var yht = item.Tilausrivit.Sum(t => t.Maara * t.Ahinta);
+                    }
+                    @Html.DisplayFor(modelItem => yht)
+                </td>
 
+                <td>
+                    <a class="btn btn-success btm-sm" href="/Tilausrivitdb/Create?id=@item.TilausID">Lisää tuotteet</a>
+                    <a class="btn btn-info btm-sm" href="/Tilauksetdb/Details?id=@item.TilausID">Erittely</a>
+                    <a class="btn btn-primary btm-sm" href="/Tilauksetdb/Edit?id=@item.TilausID">Muokkaa</a>
+                    <a class="btn btn-danger btm-sm" href="/Tilauksetdb/Delete?id=@item.TilausID">Poista</a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+            const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+            const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
+            v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+            )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+            document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+            const table = th.closest('table');
+            const tbody = table.querySelector('tbody');
+            Array.from(tbody.querySelectorAll('tr'))
+            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+            .forEach(tr => tbody.appendChild(tr));
+            })));
+    </script>
+    }

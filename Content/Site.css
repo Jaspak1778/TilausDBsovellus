@@ -1,4 +1,10 @@
-﻿/* Set padding to keep content from hitting the edges */
+﻿
+.table > thead > tr > th {
+    cursor: pointer;
+}
+
+
+/* Set padding to keep content from hitting the edges */
 .body-content {
     margin-top: 15px;
     padding-left: 15px;
@@ -66,4 +72,6 @@ a.mynav {
         width: 150px;
         border-radius: 50%;
     }
+
+
 
