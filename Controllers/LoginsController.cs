@@ -111,6 +111,7 @@ namespace MVC_TKsovellus_1001.Controllers
             return RedirectToAction("Index");
         }
 
+        [CheckSession]
         public ActionResult Kielletty() 
         {
             return View();

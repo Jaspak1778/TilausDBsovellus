@@ -15,9 +15,17 @@ namespace MVC_TKsovellus_1001.Controllers
         private TilauksetEntities db = new TilauksetEntities();
 
         [CheckSession]
-        public ActionResult Index()
-        {
+        public ActionResult Index(string currentFilter1, string searchString1)
+        {/*
             return View(db.Tuotteet.ToList());
+         */
+            var tuotteet = from p in db.Tuotteet
+                           select p;
+            if (!String.IsNullOrEmpty(searchString1))
+            {
+                tuotteet = tuotteet.Where(p => p.Nimi.Contains(searchString1));
+            }
+            return View(tuotteet);
         }
     
         public ActionResult CardIndex()
