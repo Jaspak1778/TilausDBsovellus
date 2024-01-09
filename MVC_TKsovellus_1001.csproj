@@ -143,13 +143,13 @@
     <Compile Include="Models\Asiakkaat.cs">
       <DependentUpon>TilauksetDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Henkilot.cs">
-      <DependentUpon>TilauksetDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Logins.cs">
       <DependentUpon>TilauksetDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Postitoimipaikat.cs">
+      <DependentUpon>TilauksetDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>TilauksetDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Tilaukset.cs">
@@ -244,6 +244,7 @@
     <Content Include="Models\TilauksetDB.edmx.diagram">
       <DependentUpon>TilauksetDB.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\MVCTKsovellus100120240108234805 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

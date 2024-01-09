@@ -51,9 +51,9 @@ namespace MVC_TKsovellus_1001.Controllers
         // POST: Postitoimipaikatdb/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CheckSession]
         public ActionResult Create([Bind(Include = "Postinumero,Postitoimipaikka")] Postitoimipaikat postitoimipaikat)
         {
             if (ModelState.IsValid)
@@ -65,10 +65,9 @@ namespace MVC_TKsovellus_1001.Controllers
 
             return View(postitoimipaikat);
         }
-
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CheckSession]
         public ActionResult CreateA([Bind(Include = "Postinumero,Postitoimipaikka")] Postitoimipaikat postitoimipaikat)
         {
             if (ModelState.IsValid)
@@ -100,9 +99,9 @@ namespace MVC_TKsovellus_1001.Controllers
         // POST: Postitoimipaikatdb/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CheckSession]
         public ActionResult Edit([Bind(Include = "Postinumero,Postitoimipaikka")] Postitoimipaikat postitoimipaikat)
         {
             if (ModelState.IsValid)
@@ -130,9 +129,9 @@ namespace MVC_TKsovellus_1001.Controllers
         }
 
         // POST: Postitoimipaikatdb/Delete/5
+        [CheckSession]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [CheckSession]
         public ActionResult DeleteConfirmed(string id)
         {
             Postitoimipaikat postitoimipaikat = db.Postitoimipaikat.Find(id);

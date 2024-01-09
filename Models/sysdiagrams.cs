@@ -12,14 +12,12 @@ namespace MVC_TKsovellus_1001.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Henkilot
+    public partial class sysdiagrams
     {
-        public int Henkilo_id { get; set; }
-        public string Etunimi { get; set; }
-        public string Sukunimi { get; set; }
-        public string Osoite { get; set; }
-        public Nullable<int> Esimies { get; set; }
-        public string Postinumero { get; set; }
-        public string Sahkoposti { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

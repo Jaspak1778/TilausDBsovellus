@@ -15,6 +15,7 @@ namespace MVC_TKsovellus_1001.Controllers
         private TilauksetEntities db = new TilauksetEntities();
 
         // GET: Tilauksetdb
+        [CheckSession]
         public ActionResult Index()
         {
             var tilaukset = db.Tilaukset.Include(t => t.Asiakkaat).Include(t => t.Postitoimipaikat);
@@ -22,6 +23,7 @@ namespace MVC_TKsovellus_1001.Controllers
         }
 
         // GET: Tilauksetdb/Details/5
+        [CheckSession]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,6 +39,7 @@ namespace MVC_TKsovellus_1001.Controllers
         }
 
         // GET: Tilauksetdb/Create
+        [CheckSession]
         public ActionResult Create()
         {
             ViewBag.AsiakasID = new SelectList(db.Asiakkaat, "AsiakasID", "Nimi");
@@ -47,6 +50,7 @@ namespace MVC_TKsovellus_1001.Controllers
         // POST: Tilauksetdb/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TilausID,AsiakasID,Toimitusosoite,Postinumero,Tilauspvm,Toimituspvm")] Tilaukset tilaukset)
@@ -64,6 +68,7 @@ namespace MVC_TKsovellus_1001.Controllers
         }
 
         // GET: Tilauksetdb/Edit/5
+        [CheckSession]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +88,7 @@ namespace MVC_TKsovellus_1001.Controllers
         // POST: Tilauksetdb/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TilausID,AsiakasID,Toimitusosoite,Postinumero,Tilauspvm,Toimituspvm")] Tilaukset tilaukset)
@@ -99,6 +105,7 @@ namespace MVC_TKsovellus_1001.Controllers
         }
 
         // GET: Tilauksetdb/Delete/5
+        [CheckSession]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +121,7 @@ namespace MVC_TKsovellus_1001.Controllers
         }
 
         // POST: Tilauksetdb/Delete/5
+        [CheckSession]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

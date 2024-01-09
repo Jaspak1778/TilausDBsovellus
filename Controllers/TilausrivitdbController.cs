@@ -48,10 +48,9 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tilausrivit);
             
         }
-
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CheckSession]
         public ActionResult Create([Bind(Include = "TilausID,TuoteID,Maara,Ahinta")] Tilausrivit tilausrivit)
         {
             if (ModelState.IsValid)
@@ -84,9 +83,9 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tilausrivit);
         }
 
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CheckSession]
         public ActionResult Edit([Bind(Include = "TilausriviID,TilausID,TuoteID,Maara,Ahinta")] Tilausrivit tilausrivit)
         {
             if (ModelState.IsValid)
@@ -115,9 +114,9 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tilausrivit);
         }
 
+        [CheckSession]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [CheckSession]
         public ActionResult DeleteConfirmed(int id)
         {
             Tilausrivit tilausrivit = db.Tilausrivit.Find(id);

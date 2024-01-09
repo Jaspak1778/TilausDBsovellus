@@ -75,10 +75,9 @@ namespace MVC_TKsovellus_1001.Controllers
             }
             return View(tuotteet);
         }
-
+        [CheckSession]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [CheckSession]
         public ActionResult Edit([Bind(Include = "TuoteID,Nimi,Ahinta,Kuva,Lisätieto_1")] Tuotteet tuotteet)
         {
             if (ModelState.IsValid)
@@ -105,9 +104,9 @@ namespace MVC_TKsovellus_1001.Controllers
             return View(tuotteet);
         }
 
+        [CheckSession]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [CheckSession]
         public ActionResult DeleteConfirmed(int id)
         {
             Tuotteet tuotteet = db.Tuotteet.Find(id);
